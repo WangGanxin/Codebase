@@ -5,7 +5,7 @@
 
 # Contact Me
 
-- Email：ganxinvip@163.com
+- Email：mail@wangganxin.me
 
 # License
    		Copyright 2016 Codebase of copyright 守望君
