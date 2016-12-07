@@ -129,9 +129,10 @@ public class StringUtil {
 
     /**
      * 判断字符串是否为数字
+     *
      * @param str
      * @return
-     * */
+     */
     public static boolean isNumber(String str) {
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(str);
@@ -227,26 +228,26 @@ public class StringUtil {
 
     /***
      * 阿拉伯数字字符串转中文小写数字字符串
+     *
      * @param number
-     * @return
-     *    中文小写数字字符串，最大 <b>十亿</b>
+     * @return 中文小写数字字符串，最大 <b>十亿</b>
      */
-    public static String numBerToZNCH(Integer number) {
-        String numberStr=String.valueOf(number);
+    public static String numberToZNCH(Integer number) {
+        String numberStr = String.valueOf(number);
 
-        String[] aa = { "", "十", "百", "千", "万", "十万", "百万", "千万", "亿", "十亿" };
-        String[] bb = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+        String[] aa = {"", "十", "百", "千", "万", "十万", "百万", "千万", "亿", "十亿"};
+        String[] bb = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
         char[] ch = numberStr.toCharArray();
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         int maxindex = ch.length;
-        if(ch.length>1&&ch[0]=='-'){
+        if (ch.length > 1 && ch[0] == '-') {
             sb.append("负");
-            char[] temp=ch.clone();
-            ch=new char[maxindex-1];
-            for(int i=1;i<maxindex;i++){
-                ch[i-1]=temp[i];
+            char[] temp = ch.clone();
+            ch = new char[maxindex - 1];
+            for (int i = 1; i < maxindex; i++) {
+                ch[i - 1] = temp[i];
             }
-            maxindex-=1;
+            maxindex -= 1;
         }
         if (maxindex == 2) {
             for (int i = maxindex - 1, j = 0; i >= 0; i--, j++) {
@@ -267,5 +268,45 @@ public class StringUtil {
             }
             return sb.toString();
         }
+    }
+
+    /**
+     * 去除Html标签、style样式、script脚本
+     * @param htmlString
+     * @return
+     */
+    public static String clearHtml(String htmlString) {
+        if (htmlString == null) {
+            return null;
+        }
+        String htmlStr = htmlString; // 含html标签的字符串
+        String textStr = "";
+        java.util.regex.Pattern p_script;
+        java.util.regex.Matcher m_script;
+        java.util.regex.Pattern p_style;
+        java.util.regex.Matcher m_style;
+        java.util.regex.Pattern p_html;
+        java.util.regex.Matcher m_html;
+        try {
+            // 定义script的正则表达式{或<script[^>]*?>[\\s\\S]*?<\\/script>
+            String regEx_script = "<[\\s]*?script[^>]*?>[\\s\\S]*?<[\\s]*?\\/[\\s]*?script[\\s]*?>";
+            // 定义style的正则表达式{或<style[^>]*?>[\\s\\S]*?<\\/style>
+            String regEx_style = "<[\\s]*?style[^>]*?>[\\s\\S]*?<[\\s]*?\\/[\\s]*?style[\\s]*?>";
+            // 定义HTML标签的正则表达式
+            String regEx_html = "<[^>]+>";
+            p_script = Pattern.compile(regEx_script, Pattern.CASE_INSENSITIVE);
+            m_script = p_script.matcher(htmlStr);
+            htmlStr = m_script.replaceAll(""); // 过滤script标签
+            p_style = Pattern.compile(regEx_style, Pattern.CASE_INSENSITIVE);
+            m_style = p_style.matcher(htmlStr);
+            htmlStr = m_style.replaceAll(""); // 过滤style标签
+            p_html = Pattern.compile(regEx_html, Pattern.CASE_INSENSITIVE);
+            m_html = p_html.matcher(htmlStr);
+            htmlStr = m_html.replaceAll(""); // 过滤html标签
+            textStr = htmlStr;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return textStr;// 返回文本字符串
     }
 }
