@@ -1,6 +1,7 @@
-package com.ganxin.codebase.core;
+package com.ganxin.codebase.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.ganxin.codebase.crash.CrashHandler;
 
@@ -11,12 +12,21 @@ import com.ganxin.codebase.crash.CrashHandler;
  * email : ganxinvip@163.com <br/>
  */
 public class CodebaseApplication extends Application {
+
+    private static Context mAppContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        mAppContext=this;
+
         //在这里为应用设置异常处理程序，然后我们的程序才能捕获未处理的异常
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);
+    }
+
+    public static Context getAppContext() {
+        return mAppContext;
     }
 }
