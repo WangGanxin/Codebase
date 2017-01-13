@@ -2,7 +2,7 @@ package com.ganxin.codebase.utils.sharedpreferences;
 
 import android.content.Context;
 
-import com.ganxin.codebase.app.Constants;
+import com.ganxin.codebase.application.ConstantValues;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class SettingManager implements OnSharedataCommitListener {
      * 添加设置监听
      * @param listener 监听对象
      * @param type     类型
-     *                 <li>{@link Constants#SETTING_TYPE_ONE} 设置的类型
+     *                 <li>{@link ConstantValues#SETTING_TYPE_ONE} 设置的类型
      */
     public void addSettingsChangedListener(OnSettingsChangedListenr listener,
                                            String... type) {
@@ -53,7 +53,7 @@ public class SettingManager implements OnSharedataCommitListener {
     /**
      * 解除设置监听
      * @param type 类型
-     *             <li>{@link Constants#SETTING_TYPE_ONE} 设置的类型
+     *             <li>{@link ConstantValues#SETTING_TYPE_ONE} 设置的类型
      */
     public void removeSettingsChangedListener(String... type) {
         if(listeners!=null&&listeners.size()>0){
@@ -82,8 +82,8 @@ public class SettingManager implements OnSharedataCommitListener {
      * @param value
      */
     public void setStatus(Context context, boolean value) {
-        SharedPreferencesAccessor.setConfig(context, Constants.SHARPREFER_FILENAME,
-                Constants.SETTING_TYPE_ONE, value, this);
+        SharedPreferencesAccessor.setConfig(context, ConstantValues.SHARPREFER_FILENAME,
+                ConstantValues.SETTING_TYPE_ONE, value, this);
     }
 
     /**
@@ -91,7 +91,7 @@ public class SettingManager implements OnSharedataCommitListener {
      * @return
      */
     public boolean getStatus(Context context) {
-        return SharedPreferencesAccessor.getBooleanConfig(context, Constants.SHARPREFER_FILENAME,
-                Constants.SETTING_TYPE_ONE, false);
+        return SharedPreferencesAccessor.getBooleanConfig(context, ConstantValues.SHARPREFER_FILENAME,
+                ConstantValues.SETTING_TYPE_ONE, false);
     }
 }

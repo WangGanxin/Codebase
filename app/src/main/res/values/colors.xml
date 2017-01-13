@@ -7,4 +7,14 @@
     <color name="toast_blue">#AA1E90FF</color>
     <color name="fullblue">#DD1E90FF</color>
 
+    <color name="tab_gray">#ff999999</color>
+    <color name="tab_green">#ff45c01a</color>
+
+    <color name="widgets_general_row_pressed">#d9d9d9</color>
+    <color name="widgets_general_row_normal">#ffffff</color>
+    <color name="widgets_general_row_line">#e5e5e5</color>
+    <color name="general_background">#efeff4</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="gray">#888888</color>
 </resources>

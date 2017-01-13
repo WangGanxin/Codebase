@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.text.TextUtils;
 
-import com.ganxin.codebase.app.CodebaseApplication;
-import com.ganxin.codebase.app.Constants;
+import com.ganxin.codebase.application.CodebaseApplication;
+import com.ganxin.codebase.application.ConstantValues;
 
 /**
  * Description : SharPreference工具类  <br/>
@@ -24,7 +24,7 @@ public class SharedPreferencesAccessor {
      */
     public static void writeBoolean(Context context, String key, Boolean value) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         Editor editor = preference.edit();
         editor.putBoolean(key, value);
         editor.commit();
@@ -39,7 +39,7 @@ public class SharedPreferencesAccessor {
      */
     public static void writeString(Context context, String key, String value) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         Editor editor = preference.edit();
         editor.putString(key, value);
         editor.commit();
@@ -54,7 +54,7 @@ public class SharedPreferencesAccessor {
      */
     public static void writeInt(Context context, String key, int value) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         Editor editor = preference.edit();
         editor.putInt(key, value);
         editor.commit();
@@ -69,7 +69,7 @@ public class SharedPreferencesAccessor {
      */
     public static void writeLong(Context context, String key, int value) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         Editor editor = preference.edit();
         editor.putLong(key, value);
         editor.commit();
@@ -84,7 +84,7 @@ public class SharedPreferencesAccessor {
      */
     public static void writeFloat(Context context, String key, int value) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         Editor editor = preference.edit();
         editor.putFloat(key, value);
         editor.commit();
@@ -101,7 +101,7 @@ public class SharedPreferencesAccessor {
     public static boolean readBoolean(Context context, String key,
                                       boolean defValue) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         return preference.getBoolean(key, defValue);
     }
 
@@ -115,7 +115,7 @@ public class SharedPreferencesAccessor {
      */
     public static String readString(Context context, String key, String defValue) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         return preference.getString(key, defValue);
     }
 
@@ -130,7 +130,7 @@ public class SharedPreferencesAccessor {
      */
     public static int readInt(Context context, String key, int defValue) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         return preference.getInt(key, defValue);
     }
 
@@ -144,7 +144,7 @@ public class SharedPreferencesAccessor {
      */
     public static long readLong(Context context, String key, int defValue) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         return preference.getLong(key, defValue);
     }
 
@@ -158,7 +158,7 @@ public class SharedPreferencesAccessor {
      */
     public static float readFloat(Context context, String key, int defValue) {
         SharedPreferences preference = context.getSharedPreferences(
-                Constants.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
+                ConstantValues.SHARPREFER_FILENAME, Context.MODE_PRIVATE);
         return preference.getFloat(key, defValue);
     }
 

@@ -1,4 +1,4 @@
-package com.ganxin.codebase.app;
+package com.ganxin.codebase.application;
 
 import android.app.Application;
 import android.content.Context;
