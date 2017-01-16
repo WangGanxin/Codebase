@@ -1,4 +1,4 @@
-package com.ganxin.codebase.widgets.tab;
+package com.ganxin.codebase.framework;
 
 import com.ganxin.codebase.framework.BaseFragment;
 

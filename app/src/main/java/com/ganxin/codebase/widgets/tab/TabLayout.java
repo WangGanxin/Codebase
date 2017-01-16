@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ganxin.codebase.R;
+import com.ganxin.codebase.framework.ITabFragment;
 
 import java.util.ArrayList;
 
