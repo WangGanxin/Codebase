@@ -7,4 +7,5 @@
     <item name="pullRecycler" type="id" />
     <item name="viewPager" type="id"/>
     <item name="mTabLayout" type="id"/>
+    <item name="containerView" type="id"/>
 </resources>

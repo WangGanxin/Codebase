@@ -4,4 +4,11 @@
     <string name="tab_news">新闻频道</string>
     <string name="tab_wechat">微信热门</string>
     <string name="tab_about">关于</string>
+
+    <string name="row_profile">profile</string>
+    <string name="row_mypost">My Posts</string>
+    <string name="row_favorites">Favorites</string>
+    <string name="row_wallet">Wallet</string>
+    <string name="row_settings">Settings</string>
+    <string name="row_sticker">Sticker Gallery</string>
 </resources>
