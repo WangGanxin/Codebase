@@ -8,6 +8,9 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.text.TextUtils;
+
+import com.ganxin.codebase.R;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -58,10 +61,24 @@ public class SystemHelper {
      * @param context
      * @param url
      */
-    public static void SystemWebView(Context context, String url) {
-        Uri u = Uri.parse(url);
-        Intent it = new Intent(Intent.ACTION_VIEW, u);
-        context.startActivity(it);
+    public static void SystemBrowser(Context context, String url) {
+
+        if(context==null){
+            return;
+        }
+
+        if(TextUtils.isEmpty(url)){
+            return;
+        }
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        Uri content_url = Uri.parse(url);
+        intent.setData(content_url);
+
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            context.startActivity(Intent.createChooser(intent,context.getString(R.string.tips_select_browser)));
+        }
     }
 
     /**
