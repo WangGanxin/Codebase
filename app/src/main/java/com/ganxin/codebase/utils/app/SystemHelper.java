@@ -1,6 +1,8 @@
 package com.ganxin.codebase.utils.app;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -142,7 +144,7 @@ public class SystemHelper {
      * @param context
      * @param url
      */
-    public void download(Context context, String url) {
+    public static void SystemDownload(Context context, String url) {
         if (url != null) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data = Uri.parse(Html.fromHtml(url).toString());
@@ -153,5 +155,21 @@ public class SystemHelper {
                     "com.android.browser.BrowserActivity"));
             context.startActivity(intent);
         }
+    }
+
+    /**
+     * 调用系统剪贴板复制
+     * @param context
+     * @param text
+     */
+    public static void SystemCopy(Context context, String text) {
+
+        if(TextUtils.isEmpty(text)){
+            return;
+        }
+
+        ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData=ClipData.newPlainText("text",text);
+        clipboardManager.setPrimaryClip(clipData);
     }
 }
