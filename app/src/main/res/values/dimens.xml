@@ -10,6 +10,13 @@
     <dimen name="text_f4">12sp</dimen>
     <dimen name="text_f5">10sp</dimen>
 
+    <dimen name="sp_20">20sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
+    <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_10">10sp</dimen>
+
     <!-- 统一间距规范大小 -->
     <dimen name="m1">18dp</dimen>
     <dimen name="m2">15dp</dimen>
