@@ -1,5 +1,7 @@
 package com.ganxin.codebase.application;
 
+import java.io.File;
+
 /**
  * Description : 全局配置常量类  <br/>
  * author : WangGanxin <br/>
@@ -22,4 +24,7 @@ public class ConstantValues {
 
 	public static final String SHARPREFER_FILENAME = "codebase"; //SharedPreference的文件名
 	public static final String SETTING_TYPE_ONE="setting_type_one"; //设置的类型
+
+    public static final String DIR_ROOT = "Codebase";
+    public static final String DIR_PICTURE = DIR_ROOT + File.separator + "pictures";
 }

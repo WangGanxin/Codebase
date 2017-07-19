@@ -172,4 +172,20 @@ public class SystemHelper {
         ClipData clipData=ClipData.newPlainText("text",text);
         clipboardManager.setPrimaryClip(clipData);
     }
+
+    /**
+     * 更新系统图库
+     *
+     * @param context
+     * @param uri
+     */
+    public static void UpdateMedia(Context context, Uri uri) {
+
+        if (uri == null || context == null) {
+            return;
+        }
+
+        Intent scannerIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        context.sendBroadcast(scannerIntent);
+    }
 }
