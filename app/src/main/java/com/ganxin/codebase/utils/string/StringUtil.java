@@ -13,6 +13,37 @@ import java.util.regex.Pattern;
  */
 public class StringUtil {
 
+    /**
+     *  新添加号段:181,183,184,170,176,177,178,145,
+     */
+    private static final String MOBILE_REGEX="^1(3[0-9]|4[5]|5[0-35-9]|7[0678]|8[0-9])\\d{8}";
+
+    /**
+     * 中国移动：China Mobile
+     * 134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
+     *
+     */
+    private static final String CM_REGEX="^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}";
+
+    /**
+     * 中国联通：China Unicom
+     * 130,131,132,152,155,156,185,186
+     */
+    private static final String CU_REGEX="^1(3[0-2]|4[5]|5[256]|8[56])\\d{8}";
+
+    /**
+     * 中国电信：China Telecom
+     * 133,1349,153,180,189
+     */
+    private static final String CT_REGEX="^1((33|53|8[01349]|7[0678])[0-9]|349)\\d{7}";
+
+    /**
+     * 大陆地区固话及小灵通
+     *  区号：010,020,021,022,023,024,025,027,028,029
+     *  号码：七位或八位
+     */
+    private static final String PHS_REGEX="^0(10|2[0-5789]|\\d{3})\\d{7,8}";
+
     private StringUtil() {
 
     }
@@ -72,6 +103,33 @@ public class StringUtil {
         m = p.matcher(mobile);
         b = m.matches();
         return b;
+    }
+
+    /**
+     * 手机号验证  added 2017-10-26
+     * @param phone
+     * @return
+     */
+    public static boolean isMobile2(String phone){
+        if (phone == null || phone.length() != 11 || !phone.startsWith("1"))
+            return false;
+
+        Pattern mobilePattern = Pattern.compile(MOBILE_REGEX);
+        Pattern cmPattern = Pattern.compile(CM_REGEX);
+        Pattern cuPattern = Pattern.compile(CU_REGEX);
+        Pattern ctPattern = Pattern.compile(CT_REGEX);
+
+        Matcher mobileMatcher = mobilePattern.matcher(phone);
+        Matcher cmMatcher = cmPattern.matcher(phone);
+        Matcher cuMatcher = cuPattern.matcher(phone);
+        Matcher ctMatcher = ctPattern.matcher(phone);
+
+        if(mobileMatcher.matches() || cmMatcher.matches() || cuMatcher.matches() || ctMatcher.matches()){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
