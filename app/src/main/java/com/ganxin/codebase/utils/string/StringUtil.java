@@ -5,6 +5,13 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS;
+import static java.lang.Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS;
+import static java.lang.Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT;
+import static java.lang.Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS;
+import static java.lang.Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A;
+import static java.lang.Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B;
+
 /**
  * Description : 字符串工具类  <br/>
  * author : WangGanxin <br/>
@@ -14,35 +21,34 @@ import java.util.regex.Pattern;
 public class StringUtil {
 
     /**
-     *  新添加号段:181,183,184,170,176,177,178,145,
+     * 新添加号段:181,183,184,170,176,177,178,145,
      */
-    private static final String MOBILE_REGEX="^1(3[0-9]|4[5]|5[0-35-9]|7[0678]|8[0-9])\\d{8}";
+    private static final String MOBILE_REGEX = "^1(3[0-9]|4[5]|5[0-35-9]|7[0678]|8[0-9])\\d{8}";
 
     /**
      * 中国移动：China Mobile
      * 134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
-     *
      */
-    private static final String CM_REGEX="^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}";
+    private static final String CM_REGEX = "^1(34[0-8]|(3[5-9]|5[017-9]|8[278])\\d)\\d{7}";
 
     /**
      * 中国联通：China Unicom
      * 130,131,132,152,155,156,185,186
      */
-    private static final String CU_REGEX="^1(3[0-2]|4[5]|5[256]|8[56])\\d{8}";
+    private static final String CU_REGEX = "^1(3[0-2]|4[5]|5[256]|8[56])\\d{8}";
 
     /**
      * 中国电信：China Telecom
      * 133,1349,153,180,189
      */
-    private static final String CT_REGEX="^1((33|53|8[01349]|7[0678])[0-9]|349)\\d{7}";
+    private static final String CT_REGEX = "^1((33|53|8[01349]|7[0678])[0-9]|349)\\d{7}";
 
     /**
      * 大陆地区固话及小灵通
      *  区号：010,020,021,022,023,024,025,027,028,029
      *  号码：七位或八位
      */
-    private static final String PHS_REGEX="^0(10|2[0-5789]|\\d{3})\\d{7,8}";
+    private static final String PHS_REGEX = "^0(10|2[0-5789]|\\d{3})\\d{7,8}";
 
     private StringUtil() {
 
@@ -92,6 +98,7 @@ public class StringUtil {
 
     /**
      * 手机号验证
+     *
      * @param mobile
      * @return
      */
@@ -107,10 +114,11 @@ public class StringUtil {
 
     /**
      * 手机号验证  added 2017-10-26
+     *
      * @param phone
      * @return
      */
-    public static boolean isMobile2(String phone){
+    public static boolean isMobile2(String phone) {
         if (phone == null || phone.length() != 11 || !phone.startsWith("1"))
             return false;
 
@@ -124,10 +132,9 @@ public class StringUtil {
         Matcher cuMatcher = cuPattern.matcher(phone);
         Matcher ctMatcher = ctPattern.matcher(phone);
 
-        if(mobileMatcher.matches() || cmMatcher.matches() || cuMatcher.matches() || ctMatcher.matches()){
+        if (mobileMatcher.matches() || cmMatcher.matches() || cuMatcher.matches() || ctMatcher.matches()) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -345,6 +352,7 @@ public class StringUtil {
 
     /**
      * 去除Html标签、style样式、script脚本
+     *
      * @param htmlString
      * @return
      */
@@ -381,5 +389,32 @@ public class StringUtil {
             e.printStackTrace();
         }
         return textStr;// 返回文本字符串
+    }
+
+    /**
+     * 是否包含中文
+     * @param checkStr
+     * @return
+     */
+    private static boolean containChinese(String checkStr) {
+        if (!TextUtils.isEmpty(checkStr)) {
+            char[] checkChars = checkStr.toCharArray();
+            for (int i = 0; i < checkChars.length; i++) {
+                char checkChar = checkChars[i];
+                if (checkCharContainChinese(checkChar)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static boolean checkCharContainChinese(char checkChar) {
+        Character.UnicodeBlock ub = Character.UnicodeBlock.of(checkChar);
+        if (CJK_UNIFIED_IDEOGRAPHS == ub || CJK_COMPATIBILITY_IDEOGRAPHS == ub || CJK_COMPATIBILITY_FORMS == ub ||
+                CJK_RADICALS_SUPPLEMENT == ub || CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A == ub || CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B == ub) {
+            return true;
+        }
+        return false;
     }
 }
